@@ -148,42 +148,28 @@
     <br>
     <br>
 
-    <!----------------------------------- Carousel de cartas -->
-    <div class="container">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicadores -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-          <li data-target="#myCarousel" data-slide-to="3"></li>
-        </ol>
-
-        <!-- Contenido de las diapositivas -->
-        <div id="carousel-principal" class="carousel-inner">
-          <div id="items-activos" class="carousel-item active">
-
-          </div>
-
-          <div id="items-2" class="carousel-item">
-
-          </div>
-
-          <div id="items-3" class="carousel-item">
-
-
-          </div>
+    <div id="carouselExample" class="carousel slide">
+      <div id="carouselPrincipal"  class="carousel-inner">
+        <!-- <div class="carousel-item active">
+          <img src="./Recursos/books.jpg" class="d-block w-100" alt="...">
         </div>
-        <!-- Controles de navegación -->
-        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </a>
+        <div class="carousel-item">
+          <img src="./Recursos/books.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="./Recursos/coomingsoon.jpg" class="d-block w-100" alt="...">
+        </div>
+        -->
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <!-----------------------------------fin Carousel de cartas -->
 
   </main>
 
@@ -220,7 +206,7 @@
   </footer>
 
   <!--Carousel banner -------------------------------------------------------- -->
-  <script src="main.js"></script>
+  <script src="./main.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
   <!--  Carousel banner -------------------------------------------------------- -->

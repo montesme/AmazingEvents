@@ -88,27 +88,27 @@ const data = {
     ]
 }
 
-let carousel = document.getElementById("carousel-principal")
-console.log(carouselActivo);
+let carousel = document.getElementById("carouselPrincipal")
+
 
 console.log(data.events[0]);
 
 for (let i = 0; i < data.events.length; i++) {
-    if (i< 4) {
+    if (i < 4) {
         let contenedor = document.createElement("div")
-        contenedor.classList.add("carousel-item","active" )
+        contenedor.classList.add("carousel-item", "active")
     }
-    else{
+    else {
         let contenedor = document.createElement("div")
         contenedor.classList.add("carousel-item")
     }
 }
 
 for (const events of data.events) {
-    card.classList = ("card, tamañocard")
     let card = document.createElement("div")
-    card.classList = ("card", "tamañocard")
+    card.classList.add("card", "tamañocard")
     card.innerHTML = `
+    <div class="card tamañocard">
         <img src="${events.image}" alt="...">
         <div class="card-body">
             <h5 class="card-title">${events.name}</h5>
@@ -124,8 +124,11 @@ for (const events of data.events) {
         <div class="card-body">
         <a href="#" class="btn btn-primary">Details</a>
         <a href="#" class="btn btn-primary">Another link</a>
+        </div>
         </div>`
-console.log(card)
-carouselActivo.appendChild(card);
+    console.log(card)
+    contenedor.appendChild(card);
+    
+    //carouselActivo.appendChild(card);
 }
 
