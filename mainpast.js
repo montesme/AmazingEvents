@@ -197,28 +197,22 @@ const data = {
 
 let carousel = document.getElementById("carouselPrincipal");
 
-pintarTarjetas(data.events, carousel)
+let eventosPasados = filtrarArregloMenores(data.events, data.currentDate)
+console.log(data.events);
+console.log(eventosPasados);
+
+pintarTarjetas(eventosPasados, carousel)
 
 
 function filtrarArregloMenores(arreglo, fecha) {
   let nuevoArreglo = []
-  for (let i = 0; index < arreglo.length; i++) {
+  for (let i = 0; i < arreglo.length; i++) {
     if (arreglo[i].date < fecha) {
-      nuevoArreglo.push = (arreglo[i]);
+      nuevoArreglo.push(arreglo[i])
     }
   }
   return nuevoArreglo
 }
-function filtrarArregloMayores(arreglo, fecha) {
-  let nuevoArreglo = []
-  for (let i = 0; index < arreglo.length; i++) {
-    if (arreglo[i].date > fecha) {
-      nuevoArreglo.push = (arreglo[i]);
-    }
-  }
-  return nuevoArreglo
-}
-
 function pintarTarjetas(arregloproductos, divPrincipal) {
   // Dividir los eventos en grupos de 4
   for (let i = 0; i < arregloproductos.length; i += 4) {
@@ -246,16 +240,17 @@ function pintarTarjetas(arregloproductos, divPrincipal) {
 
         card.innerHTML = `
           
-        <img  class="img" src="${event.image}" alt="...">
-        <div class="card-body ">
-            <h5 class="card-title">${event.name}</h5>
-            <p class="card-text">${arregloproductos[j].description}</p>
-        </div>
-        <div class="card-body d-flex justify-content-center align-items-center">
-        <div class="mr-3">Price ${arregloproductos[j].price}</div>
-       <a href="./details.html" class="btn btn-primary">Details</a>
-      </div>
-`;
+              <img  class="img" src="${event.image}" alt="...">
+              <div class="card-body ">
+                  <h5 class="card-title">${event.name}</h5>
+                  <p class="card-text">${arregloproductos[j].description}</p>
+              </div>
+              <div class="card-body d-flex justify-content-center align-items-center">
+              <div class="mr-3">Price ${arregloproductos[j].price}</div>
+             <a href="./details.html" class="btn btn-primary">Details</a>
+            </div>
+      `;
+
         contenedorItem.appendChild(card);
 
       }

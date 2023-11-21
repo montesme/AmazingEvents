@@ -18,6 +18,29 @@
     height: auto;
 }
 
-.tamañocard{
-    width: 18rem;
+.img{
+    display:flex;
+    align-items: center;
+    width: 100%;
+    height: 10rem;
+}
+  
+/* Estilos para las cartas */
+.card {
+    display: inline-block;
+    width: 15rem; /* Ancho de cada carta */
+    margin-right: 5px; /* Espacio entre las cartas */
+}
+
+
+/* Estilos para el contenedor del carrusel */
+.carousel-inner {
+    display: flex;
+    flex-wrap: nowrap; /* Evita el salto de línea de las cartas */
+    overflow-x: auto; /* Añade scroll horizontal si las cartas exceden el ancho */
+}
+
+.carousel-item {
+    width: auto; /* Ajusta el ancho de cada elemento del carrusel */
+    flex: 0 0 auto; /* Deshabilita el crecimiento de los elementos */
 }
