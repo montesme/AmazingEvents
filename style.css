@@ -29,7 +29,7 @@
 .card {
     display: inline-block;
     width: 15rem; /* Ancho de cada carta */
-    margin-right: 5px; /* Espacio entre las cartas */
+    margin-right: 5px; /* Espacio entre las card */
 }
 
 

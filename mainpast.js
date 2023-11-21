@@ -198,11 +198,8 @@ const data = {
 let carousel = document.getElementById("carouselPrincipal");
 
 let eventosPasados = filtrarArregloMenores(data.events, data.currentDate)
-console.log(data.events);
-console.log(eventosPasados);
 
 pintarTarjetas(eventosPasados, carousel)
-
 
 function filtrarArregloMenores(arreglo, fecha) {
   let nuevoArreglo = []
@@ -214,8 +211,7 @@ function filtrarArregloMenores(arreglo, fecha) {
   return nuevoArreglo
 }
 function pintarTarjetas(arregloproductos, divPrincipal) {
-  // Dividir los eventos en grupos de 4
-  for (let i = 0; i < arregloproductos.length; i += 4) {
+   for (let i = 0; i < arregloproductos.length; i += 4) {
 
     let contenedor
     if (i < 4) {

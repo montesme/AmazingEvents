@@ -228,7 +228,7 @@ function pintarTarjetas(arregloproductos, divPrincipal) {
         let contenedorItem = document.createElement("div");
         contenedorItem.classList.add("d-flex", "justify-content-center")
 
-        // Mostrar hasta 4 cartas en cada conjunto
+        // Mostrar hasta 4 cartas en cada conj
         for (let j = i; j < i + 4; j++) {
             const event = arregloproductos[j];
             if (data.events[j] != undefined) {
