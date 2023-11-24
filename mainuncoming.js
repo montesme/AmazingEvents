@@ -202,64 +202,61 @@ let eventosFuturos = filtrarArregloMayores(data.events, data.currentDate)
 
 pintarTarjetas(eventosFuturos, carousel)
 
-
-function filtrarArregloMayores(arreglo, fecha) {
-    let nuevoArreglo = []
-    for (let i = 0; i < arreglo.length; i++) {
-        if (arreglo[i].date > fecha) {
-            nuevoArreglo.push(arreglo[i])
-        }
-    }
-    return nuevoArreglo
-}
 function pintarTarjetas(arregloproductos, divPrincipal) {
-    // Dividir los eventos en grupos de 4
-    for (let i = 0; i < arregloproductos.length; i += 4) {
+    let contenedorPrincipal = document.createElement("div");
+    contenedorPrincipal.classList.add("carousel-inner");
 
-        let contenedor
-        if (i < 4) {
-            contenedor = document.createElement("div");
-            contenedor.classList.add("carousel-item", "active");
-        } else {
-            contenedor = document.createElement("div");
-            contenedor.classList.add("carousel-item");
+    for (let i = 0; i < arregloproductos.length; i += 4) {
+        let contenedor = document.createElement("div");
+        contenedor.classList.add("carousel-item");
+        if (i === 0) {
+            contenedor.classList.add("active");
         }
 
         let contenedorItem = document.createElement("div");
-        contenedorItem.classList.add("d-flex", "justify-content-center")
+        contenedorItem.classList.add("d-flex", "justify-content-center");
 
-        // Mostrar hasta 4 cartas en cada conj
-        for (let j = i; j < i + 4; j++) {
+        for (let j = i; j < i + 4 && j < arregloproductos.length; j++) {
             const event = arregloproductos[j];
-            if (data.events[j] != undefined) {
-                let card = document.createElement("div");
-                card.classList.add("card", "tamañocard", "mx-3",);
-                let imagen = document.createElement("img");
-                imagen.classList.add("img")
+
+            let card = document.createElement("div");
+            card.classList.add("card", "tamañocard", "mx-3");
 
                 card.innerHTML = `
             
-                <img  class="img" src="${event.image}" alt="...">
+                <img  class="img" src="${arregloproductos[j].image}" alt="...">
               <div class="card-body ">
-                  <h5 class="card-title">${event.name}</h5>
+                  <h5 class="card-title">${arregloproductos[j].name}</h5>
                   <p class="card-text">${arregloproductos[j].description}</p>
               </div>
               <div class="card-body d-flex justify-content-center align-items-center">
               <div class="mr-3">Price ${arregloproductos[j].price}</div>
              <a href="./details.html" class="btn btn-primary">Details</a>
-            </div>
-      `;
+            </div>`;
 
-                contenedorItem.appendChild(card);
-
-            }
-
+            contenedorItem.appendChild(card);
         }
-
+    
         contenedor.appendChild(contenedorItem);
-        divPrincipal.appendChild(contenedor);
+        contenedorPrincipal.appendChild(contenedor);
+    }
+    
+    divPrincipal.appendChild(contenedorPrincipal);
     }
 
+function filtrarArregloMayores(arreglo, fecha, pasado) {
+    let nuevoArreglo = []
+    for (let i = 0; i < arreglo.length; i++) {
+        if (pasado == true) {
+            if (arreglo[i].date > fecha) {
+                nuevoArreglo.push(arreglo[i]) 
+        }
+    } else {
+        if (arreglo[i].date < fecha) {
+            nuevoArreglo.push(arreglo[i])
+        }
 
-
+    }
+}
+return nuevoArreglo
 }

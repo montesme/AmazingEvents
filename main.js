@@ -1,4 +1,4 @@
-const data = {
+const data = {   
   currentDate: "2023-01-01",
   events: [
     {
@@ -254,8 +254,7 @@ function pintarTarjetas(arregloproductos, divPrincipal) {
         <div class="card-body d-flex justify-content-center align-items-center">
         <div class="mr-3">Price ${arregloproductos[j].price}</div>
        <a href="./details.html" class="btn btn-primary">Details</a>
-      </div>
-`;
+      </div>`;
         contenedorItem.appendChild(card);
 
       }
