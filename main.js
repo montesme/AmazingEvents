@@ -1,4 +1,4 @@
-const data = {   
+const data = {
   currentDate: "2023-01-01",
   events: [
     {
@@ -199,27 +199,46 @@ let carousel = document.getElementById("carouselPrincipal");
 
 pintarTarjetas(data.events, carousel)
 
+let buscador = document.getElementById("inputBusqueda");
+buscador.addEventListener("keyup", e => {
+  let nuevoArreglo = filtrarPalabra(data.events, e.target.value);
+  pintarTarjetas(nuevoArreglo, carousel)
+})
 
-function filtrarArregloMenores(arreglo, fecha) {
-  let nuevoArreglo = []
-  for (let i = 0; index < arreglo.length; i++) {
-    if (arreglo[i].date < fecha) {
-      nuevoArreglo.push = (arreglo[i]);
-    }
+let contenedorCheckbox = document.getElementById("checkboxContainer");
+
+
+let arregloCategory = Array.from(new Set(data.events.map(evento => evento.category)))
+ console.log(arregloCategory);
+
+pintarCheckbox(arregloCategory, contenedorCheckbox);
+
+
+
+
+contenedorCheckbox.addEventListener("change", e => {
+  let checked = Array.from(document.querySelectorAll("input[type=checkbox]:checked")).map(checkbox => checkbox.value);
+  
+  if (checked.length === 0) {
+    pintarTarjetas(data.events, carousel); // Mostrar todas las tarjetas originales
+  } else {
+    let nuevoArreglo = filtrarCheckbox(data.events, checked);
+    pintarTarjetas(nuevoArreglo, carousel);
   }
-  return nuevoArreglo
-}
-function filtrarArregloMayores(arreglo, fecha) {
-  let nuevoArreglo = []
-  for (let i = 0; index < arreglo.length; i++) {
-    if (arreglo[i].date > fecha) {
-      nuevoArreglo.push = (arreglo[i]);
-    }
-  }
-  return nuevoArreglo
-}
+});
+filtrarCheckbox(data,events, checked)
+
 
 function pintarTarjetas(arregloproductos, divPrincipal) {
+  divPrincipal.innerHTML = ""
+  if (arregloproductos.length == 0) {
+    divPrincipal.innerHTML = `<div class="carousel-item active tamañoCard d-flex justify-content-center align-items-center "> 
+    <div class= "bg-white text-blue rounded-3 p-2 ps-2 pe-2 m-2 opacity-bg"><h2 class="display-5 fw-bold 
+     fst-italic text-center">No hay eventos disponibles para su busqueda</h2></div>
+
+    </div>`
+
+  }
   // Dividir los eventos en grupos de 4
   for (let i = 0; i < arregloproductos.length; i += 4) {
 
@@ -238,7 +257,7 @@ function pintarTarjetas(arregloproductos, divPrincipal) {
     // Mostrar hasta 4 cartas en cada conj
     for (let j = i; j < i + 4; j++) {
       const event = arregloproductos[j];
-      if (data.events[j] != undefined) {
+      if (arregloproductos[j] != undefined) {
         let card = document.createElement("div");
         card.classList.add("card", "tamañocard", "mx-3",);
         let imagen = document.createElement("img");
@@ -246,9 +265,9 @@ function pintarTarjetas(arregloproductos, divPrincipal) {
 
         card.innerHTML = `
           
-        <img  class="img" src="${event.image}" alt="...">
+        <img  class="img" src="${arregloproductos[j].image}" alt="...">
         <div class="card-body ">
-            <h5 class="card-title">${event.name}</h5>
+            <h5 class="card-title">${arregloproductos[j].name}</h5>
             <p class="card-text">${arregloproductos[j].description}</p>
         </div>
         <div class="card-body d-flex justify-content-center align-items-center">
@@ -267,4 +286,35 @@ function pintarTarjetas(arregloproductos, divPrincipal) {
 
 
 
+}
+
+function filtrarPalabra(arregloEvento, palabraClave) {
+  let palabraClaveMinusculas = palabraClave.toLowerCase();
+  let arregloFiltrado = arregloEvento.filter(evento => evento.name.toLowerCase().includes(palabraClaveMinusculas) || evento.description.toLowerCase().includes(palabraClaveMinusculas));
+  return arregloFiltrado
+}
+
+function pintarCheckbox(arregloCategory,contenedorCheckbox) {
+  for (let j = 0; j < arregloCategory.length; j++) {
+      if (arregloCategory[j] != undefined) {
+      let checkbox = document.createElement("div");
+      checkbox.classList.add("form-check", "form-check-inline");
+      checkbox.innerHTML = `
+        
+      <input class="form-check-input" type="checkbox" id="${arregloCategory[j]}" value="${arregloCategory[j]}">
+        <label class="form-check-label" for="${arregloCategory[j]}">${arregloCategory[j]}</label>
+        
+        `;
+        contenedorCheckbox.appendChild(checkbox);
+
+    }
+
+  }
+  
+}
+
+function filtrarCheckbox(arreglo, arreglochecked) {
+  let arregloFinal = arreglo.filter(event => arreglochecked.includes(event.category));
+  console.log(arregloFinal);
+  return arregloFinal;
 }
