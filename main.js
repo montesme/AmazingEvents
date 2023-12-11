@@ -272,7 +272,7 @@ function pintarTarjetas(arregloproductos, divPrincipal) {
         </div>
         <div class="card-body d-flex justify-content-center align-items-center">
         <div class="mr-3">Price ${arregloproductos[j].price}</div>
-       <a href="./details.html" class="btn btn-primary">Details</a>
+       <a href="./details.html?id=${arregloproductos[j]._id}" class="btn btn-primary">Details</a>
       </div>`;
         contenedorItem.appendChild(card);
 
