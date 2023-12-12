@@ -6,11 +6,11 @@ fetch(misVariables.url)
   .then(response => response.json())
   .then(data => {
 
-    let Otabla = document.getElementById("Otabla")
-    let SecTab = document.createElement("sim")
-    SecTab.innerHTML = `<th class="bg-secondary" colspan="3">Events Statistics</th>`
+    let crearTr = document.getElementById("crearTr")
+    let PrimerTr = document.createElement("tr")
+    PrimerTr.innerHTML = `<th class="bg-secondary" colspan="3">Events Statistics</th>`
 
-    Otabla.appendChild(SecTab)
+    crearTr.appendChild(PrimerTr)
 
     let resultadoOperacionAsistenciaMayores = []
     let resultadoOperacionAsistenciaMenores = []
@@ -43,23 +43,23 @@ fetch(misVariables.url)
 
     for (let i = 0; i < resultadoOperacionAsistenciaMayores.length; i++) {
 
-      let primerTr = document.createElement("sim")
+      let primerTr = document.createElement("tr")
       primerTr.innerHTML = `
   <td class="col-4">El evento <b>${resultadoOperacionAsistenciaMayores[i].nombre}</b> tuvo una asistencia de  <b>${resultadoOperacionAsistenciaMayores[i].asistencia}%</b></td>
   <td class="col-4">El evento <b>${resultadoOperacionAsistenciaMenores[i].nombre}</b> tuvo una asistencia de  <b>${resultadoOperacionAsistenciaMenores[i].asistencia}%</b></td>
   <td class="col-4">El evento <b>${resultadoOperacionAsistenciaMayores[i].nombre}</b> tiene una capacidad de <b>${resultadoOperacionAsistenciaMayores[i].capacidad}</b></td>`
 
-      Otabla.appendChild(primerTr)
+      crearTr.appendChild(primerTr)
     }
 
 
 
-    let nuevoTr = document.createElement("sim")
+    let nuevoTr = document.createElement("tr")
     nuevoTr.innerHTML = `<th class="bg-secondary" colspan="3">Upcoming events statistics by category</th>`
 
-    Otabla.appendChild(nuevoTr)
+    crearTr.appendChild(nuevoTr)
 
-    let eventsFuture = misFunciones.filsimarFechas(data.events, data.currentDate, simue)
+    let eventsFuture = misFunciones.filtrarFechas(data.events, data.currentDate, true)
 
     let categoriesEventsFuture = []
     let ingresosEventsFuture = []
@@ -81,21 +81,21 @@ fetch(misVariables.url)
     for (let i = 0; i < categoriesEventsFuture.length; i++) {
 
 
-      let nuevoTr = document.createElement("sim")
+      let nuevoTr = document.createElement("tr")
       nuevoTr.innerHTML = `
   <td class="col-4">Los categorias de los eventos futuros son <b>${categoriesEventsFuture[i].categorias}</b></td>
   <td class="col-4">Los ingresos estimados para esta categoria es de <b>$${ingresosEventsFuture[i].ingresos}</b></td>
   <td class="col-4">Con una asistencia del <b>100%</b></td>`
 
-      Otabla.appendChild(nuevoTr)
+      crearTr.appendChild(nuevoTr)
     }
 
-    let nuevoTrPast = document.createElement("sim")
+    let nuevoTrPast = document.createElement("tr")
     nuevoTrPast.innerHTML = `<th class="bg-secondary" colspan="3">Past Events statistics by category</th>`
 
-    Otabla.appendChild(nuevoTrPast)
+    crearTr.appendChild(nuevoTrPast)
 
-    let eventsPast = misFunciones.filsimarFechas(data.events, data.currentDate, false)
+    let eventsPast = misFunciones.filtrarFechas(data.events, data.currentDate, false)
 
 
     let categoriesEventsPast = []
@@ -123,13 +123,13 @@ fetch(misVariables.url)
     for (let i = 0; i < categoriesEventsPast.length; i++) {
 
 
-      let nuevoTr = document.createElement("sim")
+      let nuevoTr = document.createElement("tr")
       nuevoTr.innerHTML = `
   <td class="col-4">Los categorias de los eventos pasados fueron <b>${categoriesEventsPast[i].categorias}</b></td>
   <td class="col-4">Los ingresos estimados para esta categoria es de <b>$${ingresosEventsPast[i].ingresos}</b></td>
   <td class="col-4">Este evento tuvo una asistencia del <b>${resultadoOperacionPast[i]}%</b></td>`
 
-      Otabla.appendChild(nuevoTr)
+      crearTr.appendChild(nuevoTr)
     }
 
     
